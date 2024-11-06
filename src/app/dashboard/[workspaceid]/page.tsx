@@ -1,5 +1,6 @@
 import CreateFolders from '@/components/global/create-folders'
 import CreateWorkspace from '@/components/global/create-workspace'
+import Folders from '@/components/global/folders'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import React from 'react'
 
@@ -7,7 +8,8 @@ type Props = {
     params: {workspaceid: string}
 }
 
-const Page = ({params}: Props) => {
+const Page = async ({params}: Props) => {
+    const { workspaceid } = await params
   return (
     <div>
         <Tabs defaultValue='Videos' className='mt-6'>
@@ -18,12 +20,12 @@ const Page = ({params}: Props) => {
                 </TabsList>
                 <div className='flex gap-x-3'>
                     <CreateWorkspace />
-                    <CreateFolders workspaceid={params.workspaceid} />
+                    <CreateFolders workspaceid={workspaceid} />
                 </div>
             </div>
             <section className='py-9'>
                 <TabsContent value='Videos'>
-                    <Folders workspaceid={params.workspaceid}/>
+                    <Folders workspaceid={workspaceid}/>
                 </TabsContent>
 
             </section>
